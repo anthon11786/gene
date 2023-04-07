@@ -7,6 +7,8 @@ setup(
     install_requires=[
         'Click',
         'openai',
+        'python-dotenv',
+        'pyperclip',
     ],
     entry_points={
         'console_scripts': [
