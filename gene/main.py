@@ -37,11 +37,18 @@ def ask(question: str, model: str, max_tokens: int) -> str:
     return 
 
 @cli.command()
-@click.option('--max_tokens', '-max_t', default=200, help='Maximum number of tokens')
+@click.option('--max_tokens', '-max_t', help='Maximum number of tokens')
 @click.option('--verbose', '-v', is_flag=True, default=False)
-def settings(verbose: bool) -> None:
+def settings(verbose: bool, max_tokens: int) -> None:
     """Goes through configurable settings and prompts user for input. Leave blank for default."""
     # TODO: Allow user to pass in options to bypass going through all settings (don't prompt anything just change whats passed in) 
+    if max_tokens: 
+        key = 'MAX_TOKENS'
+        if not dotenv.set_key('.env', key, max_tokens):
+            with open(".env", "w") as f:
+                f.write(key + "=" + max_tokens + "\n")
+        click.echo(f"Max tokens returned: {max_tokens}")
+        return 
 
     model = click.prompt("Set model to use (Must be a chat completion model)", default='gpt-3.5-turbo', type=str)
     max_tokens = click.prompt("Set max tokens returned", default=200, type=str)
