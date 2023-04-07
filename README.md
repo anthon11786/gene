@@ -6,7 +6,7 @@ When you ask gene for any code snippet, it will automatically copy the code port
 gene ask "Can you write a python function to generate a random number?" 
 ```
 
-![gene example](./Gene%20example.PNG)
+![gene example](./assets/Gene%20example.PNG)
 
 
 
