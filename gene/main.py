@@ -3,6 +3,7 @@ import openai
 import os 
 import dotenv
 import pyperclip
+import re
 
 # Load in .env file
 dotenv.load_dotenv('.env')
@@ -32,7 +33,7 @@ def ask(question: str, model: str, max_tokens: int) -> str:
     if os.getenv('TEMPERATURE'):
         temperature = float(os.getenv('TEMPERATURE'))
     completion = create_completion_request(question, model=model, max_tokens=max_tokens)
-
+    
     format_completion(completion)
     return 
 
@@ -96,8 +97,8 @@ def format_completion(completion: str) -> str:
     """Format the completion to be with colors for code snippets and text responses."""
     # If chatgpt returns a code snippet its always between '```' and '```'
     if '```' in completion:
-        tokens = completion.split('```')
-        code = tokens[1::2]
+        tokens = re.split('(```[a-zA-Z]*)', completion)
+        code = tokens[2::3]
         for token in tokens:
             if token in code: 
                 click.secho(token, fg='blue')
