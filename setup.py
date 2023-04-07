@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'gene = main:cli',
+            'gene = gene.main:cli',
         ],
     },
 )
