@@ -2,8 +2,8 @@
 Gene is a command-line tool that allows quick access to OpenAI's GPT-3 language model without leaving the terminal. With Gene, you can easily generate natural language text for a variety of tasks, such as generating code snippets, composing documentation, and more.
 
 When you ask gene for any code snippet, it will automatically copy the code portion to your clipboard.
-```python
-gene ask "Can you write a python function to generate a random number?" 
+```
+gene ask "Can you write a rust function to generate a random number?" 
 ```
 
 ![gene example](./assets/Gene%20example.PNG)
